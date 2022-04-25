@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Play Mastermind</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script2.js" defer></script>
+  </head>
+  <body>
+    <div id="overlay"></div>
+    <div id="grid-container">
+      <div id="lose-box" class="popup-box">
+        <div id="lose-box-container" class="popup-box-container">
+          <h2 id="you-lose">You Lose!</h2>
+          <p>You ran out of guesses.</p>
+          <button id="try-again" class="new-game" type="button">
+            Play Again
+          </button>
+        </div>
+      </div>
+      <div id="win-box" class="popup-box">
+        <div id="win-box-container" class="popup-box-container">
+          <h2 id="you-win">You Win!</h2>
+          <p>It took you <span id="tries"></span><br />Can you do better?</p>
+          <button id="play-again" class="new-game" type="button">
+            Play Again
+          </button>
+        </div>
+      </div>
+      <div id="start-box" class="popup-box">
+        <div id="start-box-container" class="popup-box-container">
+          <h2 id="welcome">Welcome to Mastermind!</h2>
+          <p>Guess the secret code.</p>
+          <button id="start" class="new-game" type="button">Start</button>
+        </div>
+      </div>
+      <h1>Play Mastermind</h1>
+      <div id="board">
+        <div id="guess-side">
+          <div class="guess-line ten">
+            <div class="guess-spot-container">
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+            </div>
+          </div>
+          <div class="guess-line nine">
+            <div class="guess-spot-container">
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+            </div>
+          </div>
+          <div class="guess-line eight">
+            <div class="guess-spot-container">
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+            </div>
+          </div>
+          <div class="guess-line seven">
+            <div class="guess-spot-container">
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+            </div>
+          </div>
+          <div class="guess-line six">
+            <div class="guess-spot-container">
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+            </div>
+          </div>
+          <div class="guess-line five">
+            <div class="guess-spot-container">
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+            </div>
+          </div>
+          <div class="guess-line four">
+            <div class="guess-spot-container">
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+            </div>
+          </div>
+          <div class="guess-line three">
+            <div class="guess-spot-container">
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+            </div>
+          </div>
+          <div class="guess-line two">
+            <div class="guess-spot-container">
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+              <div class="guess-spot"></div>
+            </div>
+          </div>
+          <div class="guess-line one">
+            <div class="guess-spot-container" id="current">
+              <div class="guess-spot droppable" id="spotA"></div>
+              <div class="guess-spot droppable" id="spotB"></div>
+              <div class="guess-spot droppable" id="spotC"></div>
+              <div class="guess-spot droppable" id="spotD"></div>
+            </div>
+          </div>
+        </div>
+        <div id="clue-side">
+          <div class="clue-line ten">
+            <div class="clue-spot-container">
+              <div class="clue-spot spotA"></div>
+              <div class="clue-spot spotB"></div>
+              <div class="clue-spot spotC"></div>
+              <div class="clue-spot spotD"></div>
+            </div>
+          </div>
+          <div class="clue-line nine">
+            <div class="clue-spot-container">
+              <div class="clue-spot spotA"></div>
+              <div class="clue-spot spotB"></div>
+              <div class="clue-spot spotC"></div>
+              <div class="clue-spot spotD"></div>
+            </div>
+          </div>
+          <div class="clue-line eight">
+            <div class="clue-spot-container">
+              <div class="clue-spot spotA"></div>
+              <div class="clue-spot spotB"></div>
+              <div class="clue-spot spotC"></div>
+              <div class="clue-spot spotD"></div>
+            </div>
+          </div>
+          <div class="clue-line seven">
+            <div class="clue-spot-container">
+              <div class="clue-spot spotA"></div>
+              <div class="clue-spot spotB"></div>
+              <div class="clue-spot spotC"></div>
+              <div class="clue-spot spotD"></div>
+            </div>
+          </div>
+          <div class="clue-line six">
+            <div class="clue-spot-container">
+              <div class="clue-spot spotA"></div>
+              <div class="clue-spot spotB"></div>
+              <div class="clue-spot spotC"></div>
+              <div class="clue-spot spotD"></div>
+            </div>
+          </div>
+          <div class="clue-line five">
+            <div class="clue-spot-container">
+              <div class="clue-spot spotA"></div>
+              <div class="clue-spot spotB"></div>
+              <div class="clue-spot spotC"></div>
+              <div class="clue-spot spotD"></div>
+            </div>
+          </div>
+          <div class="clue-line four">
+            <div class="clue-spot-container">
+              <div class="clue-spot spotA"></div>
+              <div class="clue-spot spotB"></div>
+              <div class="clue-spot spotC"></div>
+              <div class="clue-spot spotD"></div>
+            </div>
+          </div>
+          <div class="clue-line three">
+            <div class="clue-spot-container">
+              <div class="clue-spot spotA"></div>
+              <div class="clue-spot spotB"></div>
+              <div class="clue-spot spotC"></div>
+              <div class="clue-spot spotD"></div>
+            </div>
+          </div>
+          <div class="clue-line two">
+            <div class="clue-spot-container">
+              <div class="clue-spot spotA"></div>
+              <div class="clue-spot spotB"></div>
+              <div class="clue-spot spotC"></div>
+              <div class="clue-spot spotD"></div>
+            </div>
+          </div>
+          <div class="clue-line one">
+            <div class="clue-spot-container" id="current-clue-container">
+              <div class="clue-spot spotA"></div>
+              <div class="clue-spot spotB"></div>
+              <div class="clue-spot spotC"></div>
+              <div class="clue-spot spotD"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="interface-box">
+        <label id="duplicates-label"
+          >Allow Duplicates?<input
+            type="checkbox"
+            id="duplicates-box"
+            name="duplicates-box"
+            value="duplicates-box"
+        /></label>
+        <button id="new-game" class="new-game" type="button">Reset Game</button>
+      </div>
+      <div id="piece-pool">
+        <div class="piece red" id="redPiece"></div>
+        <div class="piece yellow" id="yellowPiece"></div>
+        <div class="piece blue" id="bluePiece"></div>
+        <div class="piece green" id="greenPiece"></div>
+        <div class="piece black" id="blackPiece"></div>
+        <div class="piece white" id="whitePiece"></div>
+      </div>
+      <div id="check-button">
+        <button id="check" type="button">
+          <img id="checkmark" src="checkmark.png" alt="Check Mark" />
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
